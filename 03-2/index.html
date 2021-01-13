@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="lt">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>03 - 2 Sumos skaičiuotuvas</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <template id="form-template">
+            <div class="container mt-5 border border-warning">
+                <form style="margin-top: 40px" name="form">
+                    <div class="row justify-content-md-center">
+                        <div class="col col-lg-2">
+                            <input type="text" class="form-control" name="firstNumber">
+                        </div>
+                        <div class="col col-md-auto">
+                            <p>+</p>
+                        </div>
+                        <div class="col col-lg-2">
+                            <input type="text" class="form-control" name="secondNumber">
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary">=</button>
+                        </div>
+                    </div>
+                </form>
+                <p>Sum is: <span id="sum"></span></p>
+            </div>
+        </template>
+        <script id="script">
+            const templateContent = document.querySelector('#form-template').content;
+            addForm = () => {
+                const fragment = templateContent.cloneNode(true);
+                document.body.append(fragment);
+            };
+            clickEvent = (event) => {
+                event.preventDefault();
+                event.path[1].classList.remove('border-warning');
+                event.path[1].classList.add('border-success');
+                firstNumber = Number(event.target.elements.firstNumber.value);
+                secondNumber = Number(event.target.elements.secondNumber.value);
+                event.path[1].querySelector('#sum').textContent = firstNumber + secondNumber;
+                addForm();
+                addFormListeners();
+            }
+            addFormListeners = () => {
+                const forms = document.forms;
+                for (form of forms) {
+                    if (form.name === 'form') {
+                        form.addEventListener('submit', clickEvent);
+                    }
+                }
+            };
+            addForm();
+            addFormListeners();
+        </script>
+    </body>
+
+</html>

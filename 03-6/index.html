@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="lt">
+
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <title>3 - 6 Fono paveikslėlis</title>
+        <style>
+            .fixed-height {
+                min-height: 600px;
+            }
+            .bg-cover {
+                background-size: cover !important;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container fixed-height bg-cover">
+            <form name="seasons">
+                <div class="form-group">
+                    <label for="id_of_select">Pasirinkite kokio fono norėtumėte</label>
+                    <select class="form-control" id="id_of_select">
+                        <option value="0" selected disabled>--Pasirinkite--</option>
+                        <option value="pavasaris.jpg">Pavasaris</option>
+                        <option value="vasara.jpg">Vasara</option>
+                        <option value="ruduo.jpg">Ruduo</option>
+                        <option value="ziema.jpg">Žiema</option>
+                    </select>
+                </div>
+                <button id="btn" class="btn btn-success">Rodyti</button>
+            </form>
+        </div>
+        <script>
+            form = document.forms['seasons'];
+            form['id_of_select'].addEventListener('change', (event) => {
+                form.parentElement.style.backgroundImage = `url("img/${form['id_of_select'].value}")`;
+            });
+        </script>
+    </body>
+
+</html>
